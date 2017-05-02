@@ -2,13 +2,15 @@
 let data = require('./data');
 
 class task {
-    constructor(view, name, data = {}) {
-        this.view = view;
-        this.name = name || view;
+    constructor(page, view, data = {}) {
+        this.page = page;
+        this.view = view || page;
         this.data = typeof data === 'function' ? data() : data;
     }
 }
 
 let tasks = [
-
+    new task('home', 'home', data.home),
 ];
+
+module.exports = tasks;

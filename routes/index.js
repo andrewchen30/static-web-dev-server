@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+let tasks = require('../tasks.js');
+let express = require('express');
+let router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/:page', function(req, res, next) {
+  let task = tasks.filter( task => task.page == req.params.page)[0];
+  res.render(task.view, task.data);
 });
 
 module.exports = router;
