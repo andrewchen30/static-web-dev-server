@@ -22,13 +22,16 @@ async function builder() {
         await fs.remove(_PUBLIC_BK);
         await fs.move(_PUBLIC, _PUBLIC_BK);
         await fs.mkdir(_PUBLIC);
-        tasks.forEach( async task => {
+        let buildFiles = tasks.map( async task => {
             let uri = _HOST + task.page;
             let file = _PUBLIC + task.page + '.html';
             let html = await rp({ uri });
             await fs.appendFile(file, html);
             console.ok('Page:', task.page);
+            return Promise.resolve();
         });
+        await Promise.all(buildFiles);
+        console.log('Total File: %s, build success\n', tasks.length);
     } catch (err) {
         throw err;
     }
