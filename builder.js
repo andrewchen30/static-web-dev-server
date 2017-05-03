@@ -9,16 +9,6 @@ const _PUBLIC = './public';
 const _PUBLIC_BK = './public.bk';
 const _NOTE = _PUBLIC + '/note.md';
 
-console.ok = function() {
-    let args = [];
-    let title = ['\x1b[32m', 'OK ', '\x1b[37m'];
-    for (var key in arguments) {
-        if (arguments.hasOwnProperty(key))
-            args.push(arguments[key]);
-    }
-    console.log.apply(null, title.concat(args));
-};
-
 async function builder() {
     try {
         await fs.remove(_PUBLIC_BK);
@@ -29,7 +19,10 @@ async function builder() {
             let file = _PUBLIC + '/' + task.page + '.html';
             let html = await rp({ uri });
             await fs.appendFile(file, html);
-            console.ok('Page:', task.page);
+            if(html.indexOf('_ERRORPAGE_') == -1)
+                console.log('\x1b[32m', 'OK \x1b[37m Page:', task.page);
+            else
+                console.log('\x1b[31m', 'ERR \x1b[37m Page:', task.page);
             return Promise.resolve();
         }));
         await fs.appendFile(_NOTE, 'Build at ' + moment().format('YYYY/MM/DD HH:mm'));
