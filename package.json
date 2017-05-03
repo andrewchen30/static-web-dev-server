@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "supervisor --watch '.' ./bin/www "
+    "start": "supervisor --watch '.' ./bin/www ",
+    "build": "node builder.js"
   },
   "dependencies": {
     "debug": "~2.6.0",
