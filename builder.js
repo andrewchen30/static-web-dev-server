@@ -7,6 +7,7 @@ const moment = require('moment');
 const _HOST = 'http://127.0.0.1:3000/';
 const _PUBLIC = './public';
 const _PUBLIC_BK = './public.bk';
+const _NOTE = _PUBLIC + '/note.md';
 
 console.ok = function() {
     let args = [];
@@ -31,7 +32,7 @@ async function builder() {
             console.ok('Page:', task.page);
             return Promise.resolve();
         }));
-        await fs.appendFile(_PUBLIC + '/note.md', 'Build at ' + moment().format('YYYY/MM/DD HH:mm'));
+        await fs.appendFile(_NOTE, 'Build at ' + moment().format('YYYY/MM/DD HH:mm'));
         console.log('Total File: %s, build success\n', tasks.length);
     } catch (err) {
         throw err;
