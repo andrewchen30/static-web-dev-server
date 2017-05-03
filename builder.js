@@ -1,8 +1,9 @@
 
 const fs = require('fs-extra');
-const tasks = require('./tasks.js');
-const rp = require('request-promise');
 const moment = require('moment');
+const rp = require('request-promise');
+
+const tasks = require('./tasks.js');
 
 const _HOST = 'http://127.0.0.1:3000/';
 const _PUBLIC = './public';

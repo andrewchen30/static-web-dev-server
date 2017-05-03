@@ -11,7 +11,6 @@ class task {
 
 let tasks = [
     new task('home', 'home', data.home),
-    new task('error', null, null),
 ];
 
 module.exports = tasks;
