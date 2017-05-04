@@ -21,7 +21,7 @@ router.get('/css/:file', (req, res, next) => {
   sass.render({
     file: filePath,
   }, (err, result) => {
-    if(err) return next(err);
+    if(err) return console.log('\x1b[31m', err, '\x1b[37ms');
     res.contentType('text/css');
     res.send(result.css.toString());
   });
