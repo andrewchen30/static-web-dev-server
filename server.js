@@ -1,27 +1,16 @@
 var path = require('path');
-var sass = require('node-sass');
 var express = require('express');
 var favicon = require('serve-favicon');
 
-
 var router = require('./router.js');
-
-// sass.render({
-//   file: scss_filename,
-//   [, options..]
-// }, function(err, result) { /*...*/ });
-// // OR
-// var result = sass.renderSync({
-//   data: scss_content
-//   [, options..]
-// });
 
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist/js')));
+app.use(express.static(path.join(__dirname, 'dist/images')));
 app.use('/', router);
 
 app.use(function(req, res, next) {
