@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "supervisor --watch '.' ./bin/www ",
-    "build": "node builder.js"
+    "build": "node builder.js",
+    "deploy": "node deploy.js"
   },
   "dependencies": {
     "debug": "~2.6.0",
