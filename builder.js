@@ -15,6 +15,7 @@ async function builder() {
         await fs.remove(_PUBLIC_BK);
         await fs.move(_PUBLIC, _PUBLIC_BK);
         await fs.mkdir(_PUBLIC);
+        await fs.copy('./dist', _PUBLIC + '/dist');
         await Promise.all(tasks.map( async task => {
             let uri = _HOST + task.page;
             let file = _PUBLIC + '/' + task.page + '.html';
