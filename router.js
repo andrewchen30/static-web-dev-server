@@ -1,9 +1,10 @@
+let fs = require('fs');
 let path = require('path');
 let sass = require('node-sass');
 let tasks = require('./tasks.js');
 let express = require('express');
-let router = express.Router();
 
+let router = express.Router();
 
 router.get('/', (req, res, next) => {
   res.render('_index', {tasks});
@@ -18,12 +19,18 @@ router.get('/:page', (req, res, next) => {
 router.get('/css/:file', (req, res, next) => {
   let fileName = req.params.file;
   let filePath = path.join(__dirname + '/dist/sass', fileName.replace(/.css/, '.sass'));
+  let cssFilePath = filePath.replace(/sass/g, 'css');
   sass.render({
     file: filePath,
+    outputStyle: 'compressed',
   }, (err, result) => {
     if(err) return console.log('\x1b[31m', err, '\x1b[37ms');
     res.contentType('text/css');
     res.send(result.css.toString());
+    fs.appendFile(cssFilePath, result.css, err => {
+      if(err) throw err;
+      console.log('update css file: ', req.params.file);
+    });
   });
 });
 
