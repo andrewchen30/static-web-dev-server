@@ -1,4 +1,4 @@
-let tasks = require('../tasks.js');
+let tasks = require('./tasks.js');
 let express = require('express');
 let router = express.Router();
 
