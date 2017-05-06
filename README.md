@@ -24,7 +24,11 @@ npm install -g nodejs-dashboard
 * 支援 `Jade` 和 `Sass`
 
 ```
+# Basic
 npm start
+
+# Node Dashborad 
+npm run dev
 ```
 
 並開啟 `http://localhost:3000/` 即可看到目錄
@@ -38,7 +42,7 @@ npm start
 * 編譯筆記錄黨 `/public/note.md`
 
 ```
-npm build
+npm run build
 ```
 
 ##### 佈署至 FTP
