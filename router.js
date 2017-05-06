@@ -6,6 +6,8 @@ let express = require('express');
 
 let router = express.Router();
 
+let _COLOR_RED = '\x1b[31m';
+
 router.get('/', (req, res, next) => {
   res.render('_index', {tasks});
 });
@@ -24,12 +26,12 @@ router.get('/css/:file', (req, res, next) => {
     file: filePath,
     outputStyle: 'compressed',
   }, (err, result) => {
-    if(err) return console.log('\x1b[31m', err, '\x1b[37ms');
+    if(err) return console.log(_COLOR_RED, err, '\x1b[37ms');
     res.contentType('text/css');
     res.send(result.css.toString());
     fs.appendFile(cssFilePath, result.css, err => {
       if(err) throw err;
-      console.log('update css file: ', req.params.file);
+      console.log('\x1b[32m','update \x1b[37m css file: ', req.params.file);
     });
   });
 });

@@ -14,6 +14,7 @@ Node v7.6.0
 ```
 npm install
 npm install supervisor -g
+npm install -g nodejs-dashboard
 ```
 
 ### 指令

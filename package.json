@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "supervisor --watch '.' ./bin/www ",
+    "dev": "nodejs-dashboard supervisor --watch '.' dev.index.js",
     "build": "node builder.js",
     "deploy": "node deploy.js"
   },
@@ -14,6 +15,7 @@
     "jade": "~1.11.0",
     "moment": "^2.18.1",
     "node-sass": "^4.5.2",
+    "nodejs-dashboard": "^0.4.1",
     "request": "^2.81.0",
     "request-promise": "^4.2.0",
     "serve-favicon": "^2.3.2"
