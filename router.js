@@ -1,4 +1,4 @@
-let fs = require('fs');
+let fs = require('fs-extra');
 let path = require('path');
 let sass = require('node-sass');
 let tasks = require('./tasks.js');
@@ -29,6 +29,7 @@ router.get('/css/:file', (req, res, next) => {
     if(err) return console.log(_COLOR_RED, err, '\x1b[37ms');
     res.contentType('text/css');
     res.send(result.css.toString());
+    fs.removeSync(cssFilePath);
     fs.appendFile(cssFilePath, result.css, err => {
       if(err) throw err;
       console.log('\x1b[32m','update \x1b[37m css file: ', req.params.file);
