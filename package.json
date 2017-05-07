@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "supervisor --watch '.' ./bin/www ",
-    "dev": "nodejs-dashboard supervisor --watch '.' dev.index.js",
+    "dev": "nodejs-dashboard supervisor --watch '.' dev.server.js",
     "build": "node builder.js",
     "deploy": "node deploy.js"
   },
