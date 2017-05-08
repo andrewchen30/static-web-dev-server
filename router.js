@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:page', (req, res, next) => {
   let task = tasks.filter( task => task.page == req.params.page)[0];
-  if(!task) return next();
+  // if(!task) return next();
   res.render(task.view, task.data);
 });
 
