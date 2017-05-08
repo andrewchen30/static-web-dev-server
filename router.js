@@ -1,6 +1,5 @@
 let fs = require('fs-extra');
 let path = require('path');
-let sass = require('node-sass');
 let tasks = require('./tasks.js');
 let express = require('express');
 

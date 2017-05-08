@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "supervisor --watch '.' ./bin/www ",
+    "start": "supervisor --watch '.' -e 'node,js,sass' ./bin/www",
     "dev": "nodejs-dashboard supervisor --watch '.' dev.server.js",
     "build": "node builder.js",
     "deploy": "node deploy.js"

@@ -9,8 +9,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(express.static(path.join(__dirname, 'dist/js')));
-app.use(express.static(path.join(__dirname, 'dist/images')));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/', router);
 
 app.use(function(req, res, next) {

@@ -1,6 +1,7 @@
 
 var fs = require('fs-extra');
 var moment = require('moment');
+let sassBuilder = require('node-sass');
 
 const _SASS_FOLDER = './dist/sass/';
 const _DB = './dist/sass/db.json';
@@ -28,18 +29,35 @@ async function syncSass() {
     }
 }
 
-function buildCSS(sass) {
+async function buildCSS(sass) {
     try {
         let css = sass.replace(/sass/g, 'css');
-        console.log('\x1b[32m','UPDATE \x1b[37m CSS : ', sass, ' -> ', css);
+        let options = {
+            file: sass,
+            outputStyle: 'compressed',
+        };
+        let result = await sassParser(options);
+        await fs.remove(css);
+        await fs.appendFile(css, result.css);
+        console.log('\x1b[32m','UPDATE \x1b[37m CSS file: ', sass, ' -> ', css);
         return Promise.resolve();    
     } catch (err) {
+        console.log(_COLOR_RED, err, '\x1b[37ms');
         return Promise.reject(err);
     }
+}
+
+function sassParser(options) {
+    return new Promise(function(resolve, reject) {
+        sassBuilder.render(options, (err, result) => {
+            if(err) return reject(err);
+            return resolve(result);
+        });
+    });
 }
 
 function isDiffTime(t1, t2) {
     return moment(t1).unix() != moment(t2).unix();
 }
 
-syncSass();
+module.exports = syncSass;
