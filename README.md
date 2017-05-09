@@ -11,9 +11,9 @@ Node v7.6.0
 
 ### 相依性套件
 
-```
+``` bat
 npm install
-npm install supervisor -g
+npm install -g supervisor
 npm install -g nodejs-dashboard
 ```
 
